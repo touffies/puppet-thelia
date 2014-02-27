@@ -15,14 +15,6 @@
 
 class thelia {
   
-  package{'git':
-    name       => $osfamily ? {
-      "Redhat" => "git",
-      "Debian" => "git-core",
-    },
-    ensure     => present
-  }
-
   # Clone Thelia
   vcsrepo { "/var/www/${::hostname}":
     ensure   => present,
