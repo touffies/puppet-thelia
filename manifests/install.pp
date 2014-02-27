@@ -12,10 +12,6 @@
 #
 
 class thelia::install {
-  package { ['git', 'git-core']:
-    ensure => installed,
-  }
-
 
   # Clone Thelia
   vcsrepo { "/var/www/thelia.dev":
@@ -23,7 +19,6 @@ class thelia::install {
     provider => git,
     source   => 'git://github.com/thelia/thelia.git',
     user     => 'vagrant',
-    require  => Class['php::cli'],
   }
 
   # Install
