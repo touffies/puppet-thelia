@@ -3,7 +3,7 @@
 # This module manages thelia
 # http/www.thelia.net
 #
-# === Examples
+# === Sample Usage:
 #
 # include thelia
 #
@@ -16,8 +16,6 @@ class thelia (
   $tag = 'master', 
 ) {
   
-  include apache 
-
   package{'git':
     name       => $osfamily ? {
       "Redhat" => "git",
@@ -34,5 +32,15 @@ class thelia (
     revision => $tag,
     user     => 'vagrant'
   }
+
+  // Install
+  exec { 'run composer for installing dependencies':
+    command   => "composer install",
+    cwd => '/var/www/${::hostname}',
+    timeout => 0,
+    tries => 10,
+    require => Exec["install composer"]
+  }
+
 }
 
