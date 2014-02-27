@@ -36,10 +36,5 @@ class thelia::install {
     dev                  => false, # Install dev dependencies
   }
 
-  # Install db
-  exec {
-    command => 'php Thelia thelia:install'
-  }  
-
 }
 
