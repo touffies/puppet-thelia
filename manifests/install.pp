@@ -22,7 +22,7 @@ class thelia::install {
     force => true
   }
 
-  # Install
+  # Install dependencies
   composer::exec { 'run composer for installing dependencies':
     cmd                  => 'install',  # REQUIRED
     cwd                  => '/var/www/thelia.dev', # REQUIRED
@@ -35,5 +35,11 @@ class thelia::install {
     optimize             => false, # Optimize autoloader
     dev                  => false, # Install dev dependencies
   }
+
+  # Install db
+  exec {
+    command => 'php Thelia thelia:install'
+  }  
+
 }
 
