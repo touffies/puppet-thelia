@@ -33,7 +33,7 @@ class thelia (
     user     => 'vagrant'
   }
 
-  // Install
+  # Install
   exec { 'run composer for installing dependencies':
     command   => "composer install",
     cwd => '/var/www/${::hostname}',
