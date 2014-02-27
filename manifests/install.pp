@@ -12,13 +12,19 @@
 #
 
 class thelia::install {
-  
+  package { ['git', 'git-core']:
+    ensure => installed,
+  }
+
+
   # Clone Thelia
-  exec { 'git clone thelia ':
-        command => 'git clone --recursive https://github.com/thelia/thelia.git /var/www/thelia.dev',
-        creates => '/var/www/thelia.dev',
-        require => Package["git"]
-    }
+  vcsrepo { "/var/www/thelia.dev":
+    ensure   => latest,
+    provider => git,
+    source   => 'git://github.com/thelia/thelia.git',
+    user     => 'vagrant',
+    require  => Class['php::cli'],
+  }
 
   # Install
   exec { "run composer for installing dependencies":
