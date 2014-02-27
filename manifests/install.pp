@@ -22,6 +22,12 @@ class thelia::install {
     force => true
   }
 
+  # Install PHPUnit
+  php::pear::module { 'PHPUnit':
+    repository  => 'pear.phpunit.de',
+    use_package => 'no',
+  }
+
   # Install dependencies
   composer::exec { 'run composer for installing dependencies':
     cmd                  => 'install',  # REQUIRED
