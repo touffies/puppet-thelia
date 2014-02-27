@@ -3,18 +3,17 @@
 # This module manages thelia
 # http/www.thelia.net
 #
-# === Sample Usage:
+# Parameters:
+# - None
 #
-# include thelia
+# Actions:
+# - Install thelia
 #
-# === Authors
-#
+# Author:
 # Christophe Laffont
 #
 
-class thelia (
-  $tag = 'master', 
-) {
+class thelia {
   
   package{'git':
     name       => $osfamily ? {
@@ -29,7 +28,7 @@ class thelia (
     ensure   => present,
     provider => git,
     source   => 'https://github.com/thelia/thelia.git',
-    revision => $tag,
+    revision => 'master',
     user     => 'vagrant'
   }
 
