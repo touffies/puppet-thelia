@@ -23,13 +23,13 @@ class thelia::install {
   }
 
   # Install
-  exec { 'run composer for installing dependencies':
+  exec { "run composer for installing dependencies":
     command   => "composer install",
-    cwd => '/var/www/thelia.dev',
-    timeout => 0,
-    tries => 10,
-    require => Package['composer']
+    cwd       => '/var/www/thelia.dev',
+    require   => [
+      Class['composer']
+    ],
+    timeout   => 600
   }
-
 }
 
