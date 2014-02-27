@@ -29,8 +29,7 @@ class thelia {
     command   => "composer install",
     cwd => '/var/www/${::hostname}',
     timeout => 0,
-    tries => 10,
-    require => Exec["install composer"]
+    tries => 10
   }
 
 }
