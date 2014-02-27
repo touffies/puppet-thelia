@@ -14,21 +14,17 @@
 class thelia::install {
   
   # Clone Thelia
-  vcsrepo { "/var/www/thelia.dev":
-    ensure   => present,
-    provider => git,
-    source   => 'https://github.com/thelia/thelia.git',
-    revision => 'master',
-    user     => 'vagrant'
-  }
+  exec { 'git clone thelia ':
+        command => 'git clone --recursive https://github.com/thelia/thelia.git /var/www/thelia.dev',
+        creates => '/var/www/thelia.dev',
+        require => Package["git"]
+    }
 
   # Install
   exec { "run composer for installing dependencies":
     command   => "composer install",
     cwd       => '/var/www/thelia.dev',
-    require   => [
-      Class['composer']
-    ],
+    require   => Class['composer'],
     timeout   => 600
   }
 }
