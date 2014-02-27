@@ -23,7 +23,7 @@ class thelia (
     ensure   => present,
     provider => git,
     source   => 'https://github.com/thelia/thelia.git',
-    revision => $tag
+    revision => $tag,
     user     => 'vagrant',
     force => true
   }
