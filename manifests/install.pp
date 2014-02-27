@@ -14,7 +14,7 @@
 class thelia::install {
 
   # Clone Thelia
-  vcsrepo { "/www/thelia.dev":
+  vcsrepo { "/var/www/thelia":
     ensure   => latest,
     provider => git,
     source   => 'git://github.com/thelia/thelia.git',
@@ -24,7 +24,7 @@ class thelia::install {
   # Install
   exec { "run composer for installing dependencies":
     command   => "composer install",
-    cwd       => '/www/thelia.dev',
+    cwd       => '/var/www/thelia',
     require   => Class['composer'],
     timeout   => 600
   }
