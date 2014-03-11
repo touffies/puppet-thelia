@@ -15,14 +15,15 @@
 
 class thelia (
   $dir = "/var/www/thelia.dev",
-  $tag = "master"
+  $tag = "master",
+  $source = "https://github.com/touffies/thelia.git"
 ) {
 
   # Clone Thelia
   vcsrepo { $dir:
     ensure   => present,
     provider => git,
-    source   => 'https://github.com/thelia/thelia.git',
+    source   => $source,
     revision => $tag,
     user     => 'vagrant',
     force => true
